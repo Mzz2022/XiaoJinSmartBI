@@ -1,6 +1,6 @@
 import { Footer } from '@/components';
-import { listChartByPageUsingPOST } from '@/services/xjbi/chartController';
-import { getLoginUserUsingGET, userLoginUsingPOST } from '@/services/xjbi/userController';
+import { listChartByPageUsingPOST } from '@/services/BI/chartController';
+import { getLoginUserUsingGet, userLoginUsingPost } from '@/services/BI/userController';
 import { Link } from '@@/exports';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginForm, ProFormText } from '@ant-design/pro-components';
@@ -13,7 +13,7 @@ import Settings from '../../../../config/defaultSettings';
 
 const Login: React.FC = () => {
   const [type, setType] = useState<string>('account');
-  const { initialState, setInitialState } = useModel('@@initialState');
+  const { setInitialState } = useModel('@@initialState');
   const containerClassName = useEmotionCss(() => {
     return {
       display: 'flex',
@@ -36,9 +36,10 @@ const Login: React.FC = () => {
    * 登陆成功后，获取用户登录信息
    */
   const fetchUserInfo = async () => {
-    const userInfo = await getLoginUserUsingGET();
+    const userInfo = await getLoginUserUsingGet();
     if (userInfo) {
       flushSync(() => {
+        // @ts-ignore
         setInitialState((s) => ({
           ...s,
           currentUser: userInfo,
@@ -50,7 +51,7 @@ const Login: React.FC = () => {
   const handleSubmit = async (values: API.UserLoginRequest) => {
     try {
       // 登录
-      const res = await userLoginUsingPOST(values);
+      const res = await userLoginUsingPost(values);
       if (res.code === 0) {
         const defaultLoginSuccessMessage = '登录成功！';
         message.success(defaultLoginSuccessMessage);
