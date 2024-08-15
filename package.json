@@ -49,6 +49,8 @@
     "@ant-design/icons": "^4.8.3",
     "@ant-design/pro-components": "^2.6.48",
     "@ant-design/use-emotion-css": "^1.0.4",
+    "@umijs/mfsu": "^4.3.12",
+    "@umijs/renderer-react": "^4.3.12",
     "@umijs/route-utils": "^2.2.2",
     "antd": "^5.13.2",
     "antd-style": "^3.6.1",
