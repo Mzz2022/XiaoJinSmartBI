@@ -1,8 +1,15 @@
 export default [
   { path: '/user', layout: false, routes: [{ path: '/user/login', component: './User/Login' }] },
-  { path: '/', redirect: '/add_chart' },
+  {
+    path: '/user',
+    layout: false,
+    routes: [{ path: '/user/register', component: './User/Register' }],
+  },
+  { path: '/', redirect: '/welcome' },
+  { path: '/welcome', name: '介绍', icon: 'HeartOutlined', component: './Welcome' },
   { path: '/add_chart', name: '智能分析', icon: 'barChart', component: './AddChart' },
   { path: '/my_chart', name: '我的图表', icon: 'pieChart', component: './MyChart' },
+  { path: '/myinfo', name: '我的信息', icon: 'UnorderedListOutlined', component: './User/Manage' },
 
   {
     path: '/admin',
